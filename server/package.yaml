@@ -1,0 +1,22 @@
+name:                dance-booth-server
+version:             0.1.0.0
+category:            Web
+extra-source-files:
+   - README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - snap
+  - snap-core
+  - snap-server
+  - unix
+  - bytestring
+  - io-streams
+  - filepath
+  - string-conv
+  - time
+
+executables:
+  fashion-server:
+    source-dirs:      src
+    main:             Main.hs

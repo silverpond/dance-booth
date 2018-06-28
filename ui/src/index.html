@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dance Booth</title>
+  <script src="//localhost:8000/screenshot.js"></script>
+  <link rel="stylesheet" type="text/css" href="../resources/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="info" style="display: none">
+  </div>
+
+  <div id="loading">
+    <h3>Loading the model...</h3>
+  </div>
+
+  <div id="main">
+    <h1> Dance Booth! </h1>
+    <div class="row">
+      <div class="col">
+        <div>
+          <h3>(1) Raise arms above your head to start ...</h3>
+          <video id="video" playsinline> </video>
+          <canvas id="output" />
+        </div>
+        <div>
+          <h3>(2) Countdown!</h3>
+          <h3 id="count-title"></h3>
+          <div id="count"></div>
+        </div>
+      </div>
+      <div class="col">
+        <h3>(3) Your dance!</h3>
+        <canvas id="dance" height="600" width="720" />
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+  </div>
+
+  <img id="floor" src="../resources/floor.jpg" style="display: none;" />
+
+  <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -ex
+
+mkdir -p saved-videos
+
+cd ui     && yarn build && cd -
+
+# JavaScript is terrible; note that this step means that we
+# must have port = 8000, to match what we had to hardcode in
+# the HTML.
+cp ./ui/resources/screenshot.js ./ui/dist/
+cd server && stack run -- -- --port 8000
+

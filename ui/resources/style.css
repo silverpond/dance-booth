@@ -1,0 +1,101 @@
+/* roboto-mono-regular - latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+       url('./fonts/roboto-mono-v5-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/roboto-mono-v5-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* shrikhand-regular - latin */
+@font-face {
+  font-family: 'Shrikhand';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Shrikhand Regular'), local('Shrikhand-Regular'),
+       url('./fonts/shrikhand-v3-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('./fonts/shrikhand-v3-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+h1 {
+  font-family: "Shrikhand";
+  font-weight: normal;
+  color: black;
+  padding: 10px;
+  font-size: 4em;
+  border-bottom: solid 5px gold;
+}
+
+h1, h2, h3, h4 {
+  font-weight: normal
+}
+
+h2, h3, h4 {
+  font-family: "Roboto Mono"
+}
+
+h3.info {
+  background: #bce4ff;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: black;
+}
+
+.footer-text {
+  max-width: 600px;
+  text-align: center;
+  margin: auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .footer-text, .dg {
+    display: none;
+  }
+}
+
+#video {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  display: none;
+}
+
+#main, #info {
+  display: none;
+}
+
+#main {
+  display:   flex;
+  flex-flow: column;
+}
+
+div.row {
+  display:         flex;
+  flex-flow:       row;
+  justify-content: center;
+}
+
+div.col {
+  display:     flex;
+  flex-flow:   column;
+  align-items: center;
+  margin:      20px;
+}
+
+h3.middle {
+  width:      300px;
+}
+
+#count {
+  font-size:   4em;
+  padding:     10px;
+  font-family: "Shrikhand";
+  color:       magenta;
+}
