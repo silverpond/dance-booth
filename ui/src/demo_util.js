@@ -17,8 +17,8 @@
 import * as tf from '@tensorflow/tfjs';
 import * as posenet from '@tensorflow-models/posenet';
 
-const color = 'magenta';
-const lineWidth = 3;
+// const color = 'magenta';
+const lineWidth = 5;
 
 function toTuple({y, x}) {
   return [y, x];
@@ -59,20 +59,36 @@ const partIds =
       return result;
     }, {});
 
+const leftColour    = "#d787ff";
+const rightColour   = "#00d7ff";
+const neutralColour = "#ffafd7";
+
 const connectedPartNames = [
-  ['leftHip', 'neck'], ['leftElbow', 'leftShoulder'],
-  ['leftElbow', 'leftWrist'], ['leftHip', 'leftKnee'],
-  ['leftKnee', 'leftAnkle'], ['rightHip', 'neck'],
-  ['rightElbow', 'rightShoulder'], ['rightElbow', 'rightWrist'],
-  ['rightHip', 'rightKnee'], ['rightKnee', 'rightAnkle'],
-  ['leftShoulder', 'rightShoulder'],  
-  ["leftEye", "nose"], ["rightEye", "nose"],
-  ["leftEar", "leftEye"], ["rightEar", "rightEye"],
-  ["neck", "nose"],
+  ['leftHip', 'neck', leftColour], 
+  ['leftElbow', 'leftShoulder', leftColour],
+  ['leftElbow', 'leftWrist', leftColour], 
+  ['leftHip', 'leftKnee', leftColour],
+  ['leftKnee', 'leftAnkle', leftColour], 
+  ['rightHip', 'neck', rightColour],
+  ['rightElbow', 'rightShoulder', rightColour], 
+  ['rightElbow', 'rightWrist', rightColour],
+  ['rightHip', 'rightKnee', rightColour], 
+  ['rightKnee', 'rightAnkle', rightColour],
+
+  ["neck", "leftShoulder", leftColour],
+  ["neck", "rightShoulder", rightColour],
+  // They used to have this connection
+  // ['leftShoulder', 'rightShoulder', neutralColour],  
+
+  ["leftEye", "nose", leftColour], 
+  ["rightEye", "nose", rightColour],
+  ["leftEar", "leftEye", leftColour], 
+  ["rightEar", "rightEye", rightColour],
+  ["neck", "nose", neutralColour],
 ];
 
 const connectedPartIndices = connectedPartNames.map(
-    ([jointNameA, jointNameB]) => ([partIds[jointNameA], partIds[jointNameB]]));
+    ([jointNameA, jointNameB, col]) => ([partIds[jointNameA], partIds[jointNameB], col]));
 
 export function eitherPointDoesntMeetConfidence(a, b, minConfidence) {
   return (a < minConfidence || b < minConfidence);
@@ -80,14 +96,14 @@ export function eitherPointDoesntMeetConfidence(a, b, minConfidence) {
 
 function getAdjacentKeyPoints( keypoints, minConfidence) {
   return connectedPartIndices.reduce(
-      (result, [leftJoint, rightJoint]) => {
+      (result, [leftJoint, rightJoint, col]) => {
         if (eitherPointDoesntMeetConfidence(
                 keypoints[leftJoint].score, keypoints[rightJoint].score,
                 minConfidence)) {
           return result;
         }
 
-        result.push([keypoints[leftJoint], keypoints[rightJoint]]);
+        result.push([keypoints[leftJoint], keypoints[rightJoint], col]);
         return result;
       }, []);
 }
@@ -98,7 +114,7 @@ export function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
 
   adjacentKeyPoints.forEach((keypoints) => {
     drawSegment(toTuple(keypoints[0].position),
-      toTuple(keypoints[1].position), color, scale, ctx);
+      toTuple(keypoints[1].position), keypoints[2], scale, ctx);
   });
 }
 
