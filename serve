@@ -1,14 +1,27 @@
-#!/bin/sh
+#!/bin/bash
+
+OLD_WEIGHTS_FILEPATH='https://storage.googleapis.com/tfjs-models/weights/posenet/'
+LOCAL_WEIGHTS_FILEPATH='/weights/'
+FILE_TO_MODIFY='./ui/node_modules/@tensorflow-models/posenet/dist-es6/checkpoints.js'
+
+function replace_text {
+  old_text=$1
+  new_text=$2
+  file_to_modify=$3
+  sed -i -e 's|'$old_text'|'$new_text'|g' $file_to_modify
+}
 
 set -ex
 
 mkdir -p saved-videos
+mkdir -p ./server/log
 
+replace_text $OLD_WEIGHTS_FILEPATH $LOCAL_WEIGHTS_FILEPATH $FILE_TO_MODIFY
 cd ui     && yarn build && cd -
 
 # JavaScript is terrible; note that this step means that we
 # must have port = 8000, to match what we had to hardcode in
 # the HTML.
 cp ./ui/resources/screenshot.js ./ui/dist/
-cd server && stack run -- -- --port 8000
+cd server && stack exec -- dance-booth-server --port 8000
 

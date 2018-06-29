@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2bf666aa299e2dd2e8950bd3561d025af30b9e1c876d5418b1dfdbc8479a6a0a
+-- hash: 3944f2ccc30866adab0687f8df503b1069a269bb141ce08f10436144f1f82a57
 
 name:           dance-booth-server
 version:        0.1.0.0
@@ -12,7 +12,7 @@ cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
-executable fashion-server
+executable dance-booth-server
   main-is: Main.hs
   other-modules:
       Paths_dance_booth_server

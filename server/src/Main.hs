@@ -33,8 +33,9 @@ site = do
         hSetBuffering stderr LineBuffering
         hSetBuffering stdout LineBuffering
 
-    route [ ("/",     serveDirectory "../ui/dist/")
-          , ("/dist", serveDirectory "../ui/dist/")
+    route [ ("/",         serveDirectory "../ui/dist/")
+          , ("/dist",     serveDirectory "../ui/dist/")
+          , ("/weights",  serveDirectory "../ui/weights")
           , ("do-upload", doUpload)
           ] 
 

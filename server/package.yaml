@@ -17,6 +17,6 @@ dependencies:
   - time
 
 executables:
-  fashion-server:
+  dance-booth-server:
     source-dirs:      src
     main:             Main.hs
