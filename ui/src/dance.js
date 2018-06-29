@@ -1,6 +1,7 @@
 export const danceState = {
   mode:     "idle",
   capturer: undefined,
+  frames:   []
 }
 
 
@@ -19,7 +20,8 @@ const countDown = (k, f) => {
 
 
 export const startReadyCountdown = () => {
-  danceState.mode = "readying";
+  danceState.mode   = "readying";
+  danceState.frames = [];
 
   const readyTime = 3;
 
@@ -56,7 +58,23 @@ export const wrapUpDance = () => {
     });
   }));
 
-  danceState.mode = "idle";
+  // Save the json too!
+  const formData = new FormData();
+  const json     = JSON.stringify(danceState.frames);
+  const blob     = new Blob([json], {type : 'application/json'});
+
+  formData.append("json", blob, "Poses.json");
+
+  fetch("/do-upload", {
+    method: "POST",
+    body: formData,
+  }).then( (resp) => {
+    console.log("Got response: ", resp);
+  });
+
+  danceState.mode   = "idle";
+  danceState.frames = [];
+
   countTitle.innerHTML = "";
   count.innerHTML      = "";
   console.log("The dance is all done!");

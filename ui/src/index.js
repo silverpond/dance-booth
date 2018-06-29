@@ -321,6 +321,11 @@ function detectPoseInRealTime(video, net) {
         const lw = tooUnsure(keypoints[ 9]);
         const rw = tooUnsure(keypoints[10]);
 
+        if (dance.danceState.mode == "dancing") {
+          // Save the current poses as a frame
+          dance.danceState.frames.push(poses);
+        }
+
         if ( dance.danceState.mode == "idle" 
            && (leftWristUp || rightWristUp) 
            && !(lw || rw) ) {
