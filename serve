@@ -23,5 +23,5 @@ cd ui     && yarn build && cd -
 # must have port = 8000, to match what we had to hardcode in
 # the HTML.
 cp ./ui/resources/screenshot.js ./ui/dist/
-cd server && stack exec -- dance-booth-server --port 8000
+cd server && stack build && stack exec -- dance-booth-server --port 8000
 
