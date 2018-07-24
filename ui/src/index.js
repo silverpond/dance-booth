@@ -212,15 +212,7 @@ function detectPoseInRealTime(video, net) {
 
   const danceCanvas = document.getElementById('dance');
   const danceCtx    = danceCanvas.getContext('2d');
-
-  dance.danceState.capturers = 
-    [ RecordRTC(      canvas, { type: "canvas" })
-    , RecordRTC( danceCanvas, { type: "canvas" })
-    ];
-
-
-
-  const img = document.getElementById("floor");
+  const img         = document.getElementById("floor");
 
   var detectionCount = 0;
 
@@ -336,6 +328,10 @@ function detectPoseInRealTime(video, net) {
           if ( detectionCount > 10 ) {
             detectionCount = 0;
             dance.startReadyCountdown();
+            dance.danceState.capturers = 
+              [ RecordRTC(      canvas, { type: "canvas" })
+              , RecordRTC( danceCanvas, { type: "canvas" })
+              ];
           }
         } else {
           detectionCount = 0;

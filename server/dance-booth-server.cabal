@@ -1,14 +1,15 @@
--- This file has been generated from package.yaml by hpack version 0.28.2.
+cabal-version: >= 1.10
+
+-- This file has been generated from package.yaml by hpack version 0.29.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3944f2ccc30866adab0687f8df503b1069a269bb141ce08f10436144f1f82a57
+-- hash: 4b7e8489f40e17d7a52cd2770000b0f322366707b472d054473559cddb6dde3b
 
 name:           dance-booth-server
 version:        0.1.0.0
 category:       Web
 build-type:     Simple
-cabal-version:  >= 1.10
 extra-source-files:
     README.md
 
