@@ -36,3 +36,9 @@ Once it's loaded, you should see something like this:
 
 Follow the instructions! After dancing for 10 seconds, you should see two
 videos in the `./saved-videos` folder!
+
+
+# License
+
+This code is Licensed under the [LICENSE](LICENSE) file. Further information
+can be found in the READMEs of the subfolders.
